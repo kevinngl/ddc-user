@@ -99,7 +99,7 @@ class AuthController extends Controller
     // Fungsi Lupa Password
     public function showLinkRequestForm()
     {
-        return view('page.user.auth.email');
+        return view('auth.email');
     }
 
     public function sendResetLinkEmail(Request $request)
@@ -117,7 +117,7 @@ class AuthController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        $mail = Mail::send('page.user.auth.forgetPassword', ['token' => $token], function ($message) use ($request) {
+        $mail = Mail::send('auth.forgetPassword', ['token' => $token], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Reset Password');
         });
@@ -127,7 +127,7 @@ class AuthController extends Controller
 
     public function showResetPasswordForm($token)
     {
-        return view('page.user.auth.reset', ['token' => $token]);
+        return view('auth.reset', ['token' => $token]);
     }
 
     public function submitResetPasswordForm(Request $request)
@@ -185,6 +185,6 @@ class AuthController extends Controller
     }
     public function resetPage()
     {
-        return view('page.user.auth.reset');
+        return view('auth.reset');
     }
 }

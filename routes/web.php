@@ -34,10 +34,10 @@ Route::group(['domain' => ''], function () {
     Route::get('reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('reset.password.get');
     Route::get('resetPage', [AuthController::class, 'resetPage'])->name('resetPage');
     Route::post('reset-password', [AuthController::class, 'submitResetPasswordForm'])->name('reset.password.post');
-
     Route::middleware(['auth'])->group(function () {
         Route::get('profilUser', [HomeController::class, 'profilUser'])->name('profilUser');
         Route::get('logout', [AuthController::class, 'do_logout'])->name('logout');
         Route::get('payment/{payment}', [TransactionController::class, 'index'])->name('payment');
     });
+    // });
 });
