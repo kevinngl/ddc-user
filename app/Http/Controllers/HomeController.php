@@ -11,30 +11,18 @@ use App\Models\Category;
 
 class HomeController extends Controller
 {
+    
     // Fungsi Search
     public function index(Request $request)
     {
-        $catTitle = $request->query('category') ?? '';
-
-        $donation = Donation::getDonationByCategory($catTitle);
-        $selectedCategory = Category::getCategoryByTitle($catTitle);
-        $category = Category::paginate(6);
-        return view('home.main', ['donation' => $donation, 'category' => $category, 'selectedCategory' => $selectedCategory[0]->tc_title]);
+        $data = json_decode(file_get_contents(public_path('data.json')));        
+        return view('home.main', compact('data'));
     }
     // Fungsi Filter
     public function list(Request $request)
     {
-        $catTitle = $request->query('category') ?? '';
-        $donationTitle = $request->query('donation-title') ?? '';
-
-        $donation = Donation::getDonationByCategory($catTitle);
-        if ($donationTitle) {
-            $donation = Donation::getDonationByTitle($donationTitle);
-        }
-
-        $selectedCategory = Category::getCategoryByTitle($catTitle);
-        $category = Category::paginate(6);
-        return view('list.main', ['donation' => $donation, 'category' => $category, 'selectedCategory' => $selectedCategory[0]->tc_title]);
+        $data = json_decode(file_get_contents(public_path('data.json')));
+        return view('list.main', compact('data'));
     }
 
     public function profilUser(Request $request)
@@ -42,18 +30,32 @@ class HomeController extends Controller
         $user = Auth::user();
         return view('profil.main', compact('user'));
     }
-    public function signup(Request $request)
-    {
-        return view('auth.main');
-    }
     public function signin(Request $request)
     {
         return view('auth.main');
     }
-    // Fungsi Melihat Detail Donasi
-    public function single($single)
+    public function single($id)
     {
-        $donation = Donation::where('td_title', $single)->first();
-        return view('single.main', compact('donation'));
+        // Read the products from the JSON file
+        $json = file_get_contents(public_path('data.json'));
+        $datas = json_decode($json, true);
+
+        // Find the product with the matching ID
+        $data = null;
+        foreach ($datas as $item) {
+            if ($item['id'] == $id) {
+                $data = $item;
+                break;
+            }
+        }
+        // dd($data);
+
+        // If no product is found, return a 404 error
+        if ($data == null) {
+            return response()->json(['error' => 'Data not found'], 404);
+        }
+
+        // Return the product as a JSON response
+        return view('single.main', ['data' => $data]);
     }
 }

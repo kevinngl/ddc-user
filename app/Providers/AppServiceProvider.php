@@ -21,4 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+    // function apiAuthenticated() {
+    //     return request()->header('auth_token') !== null;
+    // }
 }

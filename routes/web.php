@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
@@ -23,21 +24,26 @@ Route::group(['domain' => ''], function () {
     });
     Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::get('list', [HomeController::class, 'list'])->name('list');
-    Route::get('single/{single}', [HomeController::class, 'single'])->name('single');
-    Route::get('signup', [HomeController::class, 'signup'])->name('signup');
-    Route::get('signin', [HomeController::class, 'signin'])->name('signin');
+    Route::get('single/{id}', [HomeController::class, 'single'])->name('single');
 
-    Route::post('login', [AuthController::class, 'do_login'])->name('login');
-    Route::post('register', [AuthController::class, 'do_register'])->name('register');
-    Route::get('forgot-password', [AuthController::class, 'showLinkRequestForm'])->name('forgot-password');
-    Route::post('send-email', [AuthController::class, 'sendResetLinkEmail'])->name('send-email');
-    Route::get('reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('reset.password.get');
-    Route::get('resetPage', [AuthController::class, 'resetPage'])->name('resetPage');
-    Route::post('reset-password', [AuthController::class, 'submitResetPasswordForm'])->name('reset.password.post');
-    Route::middleware(['auth'])->group(function () {
-        Route::get('profilUser', [HomeController::class, 'profilUser'])->name('profilUser');
-        Route::get('logout', [AuthController::class, 'do_logout'])->name('logout');
-        Route::get('payment/{payment}', [TransactionController::class, 'index'])->name('payment');
+    Route::middleware(['guest'])->group(function () { 
+        Route::get('signin', [HomeController::class, 'signin'])->name('signin');
+
+        Route::post('login', [AuthController::class, 'do_login'])->name('login');
+        Route::post('register', [AuthController::class, 'do_register'])->name('register');
     });
-    // });
+
+    Route::middleware(['checkAuthToken'])->group(function () {
+        // Add protected routes here
+        Route::get('profile', [UserController::class, 'getUserData'])->name('profile');
+        Route::get('payment/{payment}', [TransactionController::class, 'index'])->name('payment');
+        Route::get('logout', [AuthController::class, 'do_logout'])->name('logout');
+    });
+
+    
+    Route::get('forgot-password', [AuthController::class, 'showLinkRequestForm'])->name('forgot-password');
+    // Route::post('send-email', [AuthController::class, 'sendResetLinkEmail'])->name('send-email');
+    // Route::get('reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('reset.password.get');
+    // Route::get('resetPage', [AuthController::class, 'resetPage'])->name('resetPage');
+    // Route::post('reset-password', [AuthController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 });

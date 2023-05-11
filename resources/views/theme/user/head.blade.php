@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="{{ asset('semicolon/css/colors.php?color=209EBB') }}" type="text/css" />
     <link rel="shortcut icon" href="{{ asset('semicolon/favicon.ico') }}" />
     <link rel="shortcut icon" href="{{ asset('css/toastr.css') }}" />
-    <link rel="shortcut icon" href="{{ asset('css/sweetalert2.min.css') }}" />
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
     <!-- Document Title
  ============================================= -->

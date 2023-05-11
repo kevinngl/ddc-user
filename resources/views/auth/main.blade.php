@@ -32,7 +32,7 @@
                             <div class="col-12 form-group">
                                 <button class="button button-3d button-black m-0" id="tombol_login" type="button"
                                     onclick="auth('#tombol_login','#form_login','{{ route('login') }}','login');">Login</button>
-                                <a href="{{route('forgot-password')}}" class="float-end">Lupa password?</a>
+                                <a href="{{ route('forgot-password') }}" class="float-end">Lupa password?</a>
                             </div>
                         </form>
                     </div>
@@ -57,7 +57,13 @@
 
                             <div class="col-12 form-group">
                                 <label for="register-form-email">Email:</label>
-                                <input type="text" id="register-form-email" name="email" value=""
+                                <input type="email" id="register-form-email" name="email" value=""
+                                    class="form-control" />
+                            </div>
+
+                            <div class="col-12 form-group">
+                                <label for="register-form-email">No.HP:</label>
+                                <input type="tel" id="register-form-email" name="phone" value=""
                                     class="form-control" />
                             </div>
 
@@ -79,7 +85,6 @@
             </div>
         </div>
     </section>
-    <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
     <script>
         function user_auth(button, form, uri, title) {
             $(button).submit(function() {
@@ -94,6 +99,7 @@
                 data: data,
                 dataType: 'json',
                 success: function(response) {
+
                     if (response.alert == "success") {
                         Swal.fire({
                             text: response.message,

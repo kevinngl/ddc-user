@@ -10,18 +10,18 @@
                             <div class="col-auto">
                                 <!-- Title
                                 ============================================= -->
-                                <h2 class="nott ls0 h2 fw-bold">{{ $donation->td_title }}</h2>
-                                <p class="text-muted mb-1">Diposting pada tanggal {{ $donation->created_at }}</p>
+                                <h2 class="nott ls0 h2 fw-bold">{{ $data['title'] }}</h2>
+                                <p class="text-muted mb-1">Diposting pada tanggal {{ $data['created_at'] }}</p>
 
                                 <!-- Tag Cloud
                                 ============================================= -->
                                 <div class="tagcloud my-3 clearfix">
-                                    <a href="#">Bencana Alam</a>
+                                    <a href="#">{{ $data['category'] }}</a>
                                 </div><!-- .tagcloud end -->
 
                                 <div class="clear"></div>
 
-                                <i class="icon-map-marker1"></i> <u>{{ $donation->td_location }}</u>
+                                <i class="icon-map-marker1"></i> <u>{{ $data['location'] }}</u>
                             </div>
 
                             <div class="col-auto order-md-last mb-4 mt-4 mb-md-0">
@@ -58,7 +58,7 @@
                                 ============================================= -->
                                 <div class="entry-image mt-2">
                                     <div class="mb-2">
-                                        <img src="{{ asset($donation->td_image) }}" alt="Image" class="mb-3">
+                                        <img src="{{ asset($data['campaign_image']) }}" alt="Image" class="mb-3">
                                     </div>
                                 </div>
 
@@ -72,7 +72,7 @@
 
                                     <div id="section-desc" class="page-section">
                                         <blockquote>
-                                            <p>{{ $donation->td_description }}</p>
+                                            <p>{{ $data['description'] }}</p>
                                         </blockquote>
                                     </div>
 
@@ -191,17 +191,20 @@
                         <div class="sidebar-widgets-wrap">
 
                             <div>
-                                <h3 class="fw-bold h2 mb-2 color">Rp 1.257.000 Terkumpul</h3>
+                                <h3 class="fw-bold h2 mb-2 color">Rp {{ number_format($data['achieved'], 2, ',', '.') }}
+                                    Terkumpul</h3>
                                 <span class="text-uppercase text-smaller op-07">Target Dana Rp.
-                                    {{ number_format($donation->td_target) }}</span>
+                                    {{ number_format($data['target'], 2, ',', '.') }}</span>
                                 <ul class="skills mt-4">
                                     <li data-percent="73" style="height: 7px">
                                         <span class="d-flex justify-content-between w-100">
                                             <span class="counter counter-xs h6"><span data-from="0" data-to="73"
                                                     data-refresh-interval="10"
-                                                    data-speed="2000"></span><strong>%</strong> Dana Terkumpul</span>
+                                                    data-speed="2000"></span><strong>{{ $data['percentage'] }}%</strong>
+                                                Dana Terkumpul</span>
                                             <span class="counter counter-xs h6"><span data-from="0" data-to="20"
-                                                    data-refresh-interval="3" data-speed="1200"></span> Hari
+                                                    data-refresh-interval="3"
+                                                    data-speed="1200"></span>{{ $data['duration'] }} Hari
                                                 Lagi</span>
                                         </span>
                                         <div class="progress"></div>
@@ -211,22 +214,17 @@
 
                             <div class="line line-sm"></div>
 
-                            <div>
-                                <h3 class="fw-bold h1 mb-2">30</h3>
-                                <span class="text-uppercase text-smaller op-07">Donatur</span>
-                            </div>
-
                             <div class="line line-sm"></div>
 
                             <div>
-                                <h3 class="fw-bold h1 mb-2">37</h3>
-                                <span class="text-uppercase text-smaller op-07">Kontribusi</span>
+                                <h3 class="fw-bold h1 mb-2">{{ $data['contributor'] }}</h3>
+                                <span class="text-uppercase text-smaller op-07">Kontributor</span>
                             </div>
 
                             <div class="line line-sm"></div>
 
                             <div class="clear mt-4"></div>
-                            <a href="{{ route('payment', $donation->id) }}"
+                            <a href="{{ route('payment', $data['id']) }}"
                                 data-lightbox="inline"class="button button-xlarge fw-semibold button-rounded ls0 nott ms-0 my-4 w-100 text-center">Berikan
                                 Donasi</a>
                             {{-- <a href="#modal-payment" data-lightbox="inline">Test
@@ -237,11 +235,11 @@
                                 <div class="card-header"><strong>Diposting oleh</strong></div>
                                 <div class="card-body">
                                     <div class="author-image">
-                                        <img src="{{ $donation->user->photo }}" alt="Image"
+                                        <img src="{{ asset($data['pic_image']) }}" alt="Image"
                                             class="rounded-circle">
                                     </div>
-                                    <a href="#">{{ $donation->user->name }}</a>
-                                    <p>{{ $donation->user->role }}</p>
+                                    <a href="#">{{ $data['pic_name'] }}</a>
+                                    <p>{{ $data['pic_role'] }}</p>
                                 </div>
                             </div><!-- Post Single - Author End -->
                         </div>

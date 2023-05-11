@@ -2,25 +2,24 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
-class RedirectIfAuthenticated
+class CheckAuthToken extends Middleware
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string ...$guards): Response
+    public function handle($request, Closure $next, ...$guards): Response
     {
         $authToken = session()->has('auth_token');
 
-        if ($authToken) {
-            return redirect()->route('home');
+        if (!$authToken) {
+            return redirect()->route('signin');
         }
 
         return $next($request);

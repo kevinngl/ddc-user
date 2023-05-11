@@ -15,24 +15,6 @@
                                         <h4>Masukan Data Pembayaran Donasi</h4>
 
                                         <div class="row">
-                                            <div class="col-12 form-group">
-
-                                                <div class="col-lg-12">
-                                                    <div>
-                                                        <label for="payment_method">Pilih Metode Pembayaran:</label>
-                                                        <select name="payment_method" id="payment_method"
-                                                            class="form-control">
-                                                            <option value="BRI">BRI</option>
-                                                            <option value="BRI">BNI</option>
-                                                            <option value="BRI">BCA</option>
-                                                            <option value="BRI">Mandiri</option>
-                                                            <option value="dana">Dana</option>
-                                                            <option value="gopay">Gopay</option>
-                                                            <option value="ovo">OVO</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                             <div class="col-12 form-group">
 

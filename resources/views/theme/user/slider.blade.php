@@ -13,10 +13,11 @@
                         </div>
                         <a href="{{ route('list') }}" data-lightbox="inline"
                             class="button button-large fw-semibold button-rounded ls0 nott ms-0">Mulai Berdonasi</a>
-                        @guest
+                        @if (!session('auth_token'))
                             <a href="{{ route('signin') }}"
-                            class="button button-large fw-semibold button-border button-rounded ls0 nott">Sign In</a><br>
-                        @endguest
+                                class="button button-large fw-semibold button-border button-rounded ls0 nott">Daftar
+                                Akun</a><br>
+                        @endif
                     </div>
                 </div>
             </div>

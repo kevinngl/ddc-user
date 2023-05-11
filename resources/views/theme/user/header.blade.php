@@ -15,12 +15,6 @@
                 </div><!-- #logo end -->
 
                 <div class="header-misc">
-                    <!-- Top Search
-                    ============================================= -->
-                    <div id="top-search" class="header-misc-icon">
-                        <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
-                                class="icon-line-cross"></i></a>
-                    </div><!-- #top-search end -->
 
                     <a href="{{ route('list') }}"
                         class="button button-small fw-semibold button-border button-rounded ls0 fw-medium nott">Donasi
@@ -47,9 +41,9 @@
                         <li class="current menu-item"><a class="menu-link" href="{{ route('home') }}">
                                 <div>Beranda</div>
                             </a></li>
-                        @auth
+                        @if (session('auth_token'))
                             <li class="menu-item">
-                                <a class="menu-link" href="{{ route('profilUser') }}">
+                                <a class="menu-link" href="{{ route('profile') }}">
                                     <div>Profil</div>
                                 </a>
                             </li>
@@ -58,22 +52,16 @@
                                     <div>Logout</div>
                                 </a>
                             </li>
-                        @endauth
-                        @guest
+                        @else
                             <li class="menu-item">
                                 <a class="menu-link" href="{{ route('signin') }}">
                                     <div><i class="icon-line2-user fw-semibold"></i>Masuk</div>
                                 </a>
                             </li>
-                        @endguest
+                        @endif
                     </ul>
 
                 </nav><!-- #primary-menu end -->
-
-                <form class="top-search-form" action="search.html" method="get">
-                    <input type="text" name="q" class="form-control" value=""
-                        placeholder="Cari Program Donasi" autocomplete="off">
-                </form>
 
             </div>
         </div>
