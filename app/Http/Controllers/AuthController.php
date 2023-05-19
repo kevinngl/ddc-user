@@ -20,17 +20,7 @@ class AuthController extends Controller
     {
         $email = $request['email'];
         $password = $request['password'];
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|unique:users|max:255',
-            'password' => 'required|string|min:8',
-        ]);
         
-        if ($validator->fails()) {
-            return response()->json([
-                'alert' => 'error',
-                'message' => $validator->errors()->first(),
-            ]);
-        }
         $login = $this->authService->login($email, $password);
         if ($login) {
             return response()->json([
