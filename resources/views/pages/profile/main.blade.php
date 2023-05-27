@@ -6,13 +6,13 @@
                 <div class="row clearfix">
 
                     <div class="col-md-9">
-
-                        <img src="{{ asset('semicolon/crowdfunding/images/investors/user.png') }}"
-                            class="alignleft img-circle img-thumbnail my-0" alt="Avatar" style="max-width: 84px;">
+                        {{-- <img src="{{ $user['image']['filePath'] ?? 'https://img.freepik.com/free-icon/user_318-159711.jpg' }}"
+                            class="alignleft img-circle img-thumbnail my-0" alt="Avatar" style="max-width: 84px;"> --}}
 
                         <div class="heading-block border-0">
                             <h3>{{ $user->name }}</h3>
                             <span>{{ $user->email }}</span>
+                            <span>{{ $user->phone }}</span>
                         </div>
 
                         <div class="clear"></div>
@@ -36,32 +36,28 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <code>2/08/2023</code>
-                                                        </td>
-                                                        <td>Bencana Alam Tarutung</td>
-                                                        <td>Rp. 10,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <code>5/10/2022</code>
-                                                        </td>
-                                                        <td>Bantuan SD Negeri 01</td>
-                                                        <td>Rp. 50,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <code>11/06/2022</code>
-                                                        </td>
-                                                        <td>Kabar Dukacita Orangtua Mahasiswa</td>
-                                                        <td>Rp. 100,000</td>
-                                                    </tr>
-
+                                                    @foreach ($donation as $item)
+                                                        <tr>
+                                                            <td>
+                                                                <code>{{ strftime('%e %B %Y, %H:%M', strtotime($item['payment']['transactionTime'])) }}
+                                                                    WIB</code>
+                                                            </td>
+                                                            <td>{{ $item['campaign']['title'] }}</td>
+                                                            <td>Rp
+                                                                {{ number_format($item['payment']['amount']) }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                    @if (empty($donation))
+                                                        <tr>
+                                                            <td colspan="3" class="text-center">Belum ada transaksi
+                                                            </td>
+                                                        </tr>
+                                                    @endif
                                                 </tbody>
                                             </table>
 
                                         </div>
+
                                         <div class="tab-content clearfix" id="tab-posts">
 
                                             <!-- Posts
@@ -194,6 +190,7 @@
                                             </div>
 
                                         </div>
+
                                         <div class="tab-content clearfix" id="tab-replies">
 
                                             <div class="clear topmargin-sm"></div>
@@ -293,6 +290,7 @@
                                             </ol>
 
                                         </div>
+
                                     </div>
 
                                 </div>

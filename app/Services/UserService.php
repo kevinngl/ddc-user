@@ -18,7 +18,7 @@ class UserService {
 
     public function getUser($id) {
         $url = $this->baseUrl . '/user' . '/' . $id;
-        $response = $this->httpCurl->get(null, $url);
+        $response = $this->httpCurl->get($url, null);
         $response = json_decode($response, true);
 
         return $response;

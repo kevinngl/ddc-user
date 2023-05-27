@@ -87,24 +87,22 @@
     </section>
     <script>
         function user_auth(button, form, uri, title) {
-            $(button).submit(function() {
-                return false;
-            });
+            // $(button).prop("disabled", true);
+            // $(button).html("Please wait");
+
             let data = $(form).serialize();
-            $(button).prop("disabled", true);
-            $(button).html("Please wait");
+
             $.ajax({
                 type: "POST",
                 url: uri,
                 data: data,
                 dataType: 'json',
                 success: function(response) {
-
                     if (response.alert == "success") {
                         Swal.fire({
                             text: response.message,
                             icon: "success",
-                            buttonsStyling: !1,
+                            buttonsStyling: false,
                             showConfirmButton: false,
                             timer: 1500,
                         }).then(function() {
@@ -118,7 +116,7 @@
                         Swal.fire({
                             text: response.message,
                             icon: "error",
-                            buttonsStyling: !1,
+                            buttonsStyling: false,
                             confirmButtonText: "Ok, Mengerti!",
                             customClass: {
                                 confirmButton: "btn btn-danger"
@@ -129,5 +127,6 @@
             });
         }
     </script>
+
 
 </x-user-layout>

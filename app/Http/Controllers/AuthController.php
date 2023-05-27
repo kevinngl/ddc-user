@@ -15,7 +15,10 @@ class AuthController extends Controller
     public function __construct(){
         $this->authService = new AuthService();
     }
-    
+    public function signin(Request $request)
+    {
+        return view('pages.auth.main');
+    }
     public function do_login(Request $request)
     {
         $email = $request['email'];

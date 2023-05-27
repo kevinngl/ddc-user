@@ -19,6 +19,6 @@ class TransactionController extends Controller
     public function index($payment)
     {
         $donation = Donation::where('td_title', $payment)->first();
-        return view('payment.main', compact('donation'));
+        return view('pages.payment.main', compact('donation'));
     }
 }
