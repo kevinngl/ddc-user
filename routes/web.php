@@ -5,7 +5,7 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\DonationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
@@ -36,7 +36,8 @@ Route::group(['domain' => ''], function () {
     Route::middleware(['checkAuthToken'])->group(function () {
         // Add protected routes here
         Route::get('profile', [UserController::class, 'getUserData'])->name('profile');
-        Route::get('donate/{id}', [TransactionController::class, 'index'])->name('donate');
+        Route::get('donate/{id}', [DonationController::class, 'index'])->name('donate');
+        Route::post('payment/{id}', [DonationController::class, 'store'])->name('payment');
         Route::get('logout', [AuthController::class, 'do_logout'])->name('logout');
     });
 

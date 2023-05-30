@@ -22,7 +22,6 @@
                                 <!-- Tag Cloud
                                 ============================================= -->
 
-
                                 <div class="clear"></div>
 
                             </div>
@@ -61,7 +60,7 @@
                                 ============================================= -->
                                 <div class="entry-image mt-2">
                                     <div class="mb-2">
-                                        <img src="{{ $item['image']['filePath'] ?? 'https://images.bisnis.com/posts/2021/12/10/1476128/donasi.jpeg' }}"
+                                        <img src="{{ $data['image']['filePath'] ?? 'https://images.bisnis.com/posts/2021/12/10/1476128/donasi.jpeg' }}"
                                             alt="Image" class="mb-3">
                                     </div>
                                 </div>
@@ -74,12 +73,10 @@
                                 ============================================= -->
                                 <div class="entry-content mt-4">
                                     <div class="tagcloud my-3 clearfix">
-                                        <a href="#">{{ $data['category']['name'] }}</a>
+                                        <a href="#">Kategori : {{ $data['category']['name'] }}</a>
                                     </div><!-- .tagcloud end -->
                                     <div id="section-desc" class="page-section">
-                                        <blockquote>
-                                            <p>{{ $data['description'] }}</p>
-                                        </blockquote>
+                                        <p>{{ $data['description'] }}</p>
                                     </div>
 
                                     <div class="line"></div>
@@ -227,10 +224,6 @@
                                 </ul>
 
                             </div>
-
-
-                            <div class="line line-sm"></div>
-
                             <div class="clear mt-4"></div>
                             <a href="{{ route('donate', $data['id']) }}"
                                 data-lightbox="inline"class="button button-xlarge fw-semibold button-rounded ls0 nott ms-0 my-4 w-100 text-center">Berikan

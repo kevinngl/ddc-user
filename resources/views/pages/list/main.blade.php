@@ -49,7 +49,7 @@
                                 <div class="products-desc">
                                     <h3><a href="{{ route('single', $item['id']) }}">{{ $item['title'] }}</a>
                                     </h3>
-                                    <p>{{ $item['description'] }}</p>
+                                    <p>{{ $item['donationAchieved'] }}</p>
                                     <div class="clear"></div>
                                     <ul class="skills">
                                         @php

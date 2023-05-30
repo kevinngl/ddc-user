@@ -31,6 +31,7 @@ class CampaignController extends Controller
     public function detail($id)
     {
         $responseCampaign = $this->campaignService->detail($id);
+        // dd($responseCampaign);
 
         $responseDonation = $this->donationService->list([
             'campaignId' => $id,

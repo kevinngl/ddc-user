@@ -1,17 +1,15 @@
 function load_content_input(url) {
     // show_progress('input');
-    $.post(url, {}, function(result) {
+    $.post(url, {}, function (result) {
         $('#content_input').html(result);
         main_content('content_input');
         // hide_progress();
     }, "html");
 }
-function open_modal(id)
-{
+function open_modal(id) {
     $(id).modal('show');
 }
-function save_form(tombol,form,url)
-{
+function save_form(tombol, form, url) {
     $(tombol).submit(function () {
         return false;
     });
@@ -24,27 +22,42 @@ function save_form(tombol,form,url)
         data: data,
         dataType: 'json',
         success: function (response) {
-            if (response.alert=="success") {
-                success_message(response.message);
-                $(form)[0].reset();
-                setTimeout(function () {
-                    $(tombol).prop("disabled", false);
-                    $(tombol).html("Kirim");
-                    location.reload();
-                }, 2000);
+            if (response.alert == "success") {
+                Swal.fire({
+                    text: response.message,
+                    icon: "success",
+                    buttonsStyling: false,
+                    showConfirmButton: false,
+                    timer: 1500,
+                }).then(function () {
+                    window.open(response.data);
+                    setTimeout(function () {
+                        window.location.href = response.callback;
+                    }, 3000);
+                });
+                // success_message(response.message);
+                // $(form)[0].reset();
+                // setTimeout(function () {
+                //     $(tombol).prop("disabled", false);
+                //     $(tombol).html("Kirim");
+                //     window.open(response.data);
+                // }, 2000);
             } else {
-                error_message(response.message);
-                setTimeout(function () {
-                    $(tombol).prop("disabled", false);
-                    $(tombol).html("Kirim");
-                }, 2000);
+                Swal.fire({
+                    text: response.message,
+                    icon: "error",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, Mengerti!",
+                    customClass: {
+                        confirmButton: "btn btn-danger"
+                    },
+                });
             }
         },
     });
-    
+
 }
-function save_form_modal(tombol,form,url,modal, method)
-{
+function save_form_modal(tombol, form, url, modal, method) {
     $(tombol).submit(function () {
         return false;
     });
@@ -57,7 +70,7 @@ function save_form_modal(tombol,form,url,modal, method)
         data: data,
         dataType: 'json',
         success: function (response) {
-            if (response.alert=="success") {
+            if (response.alert == "success") {
                 success_message(response.message);
                 $(form)[0].reset();
                 $(modal).modal('toggle');
@@ -75,10 +88,9 @@ function save_form_modal(tombol,form,url,modal, method)
             }
         },
     });
-    
+
 }
-function upload_form_modal(tombol,form,url,modal,method)
-{
+function upload_form_modal(tombol, form, url, modal, method) {
     $(document).one('submit', form, function (e) {
         let data = new FormData(this);
         data.append('_method', 'POST');
@@ -95,7 +107,7 @@ function upload_form_modal(tombol,form,url,modal,method)
             processData: false,
             dataType: 'json',
             success: function (response) {
-                if (response.alert=="success") {
+                if (response.alert == "success") {
                     success_message(response.message);
                     $(form)[0].reset();
                     $(modal).modal('hide');
@@ -117,7 +129,7 @@ function upload_form_modal(tombol,form,url,modal,method)
     });
 
 }
-function handle_open_modal(url,modal,content){
+function handle_open_modal(url, modal, content) {
     $.ajax({
         type: "GET",
         url: url,
@@ -130,7 +142,7 @@ function handle_open_modal(url,modal,content){
         },
     });
 }
-function handle_delete(url){
+function handle_delete(url) {
     $.confirm({
         animationSpeed: 1000,
         animation: 'zoom',
@@ -147,16 +159,16 @@ function handle_delete(url){
         buttons: {
             Ya: {
                 btnClass: 'btn-red any-other-class',
-                action: function(){
+                action: function () {
                     $.ajax({
-                        type:"DELETE",
+                        type: "DELETE",
                         url: url,
                         dataType: "json",
-                        success:function(response){
+                        success: function (response) {
                             if (response.alert == "success") {
                                 success_message(response.message);
                                 load_list(1);
-                            }else{
+                            } else {
                                 error_message(response.message);
                                 load_list(1);
                             }
@@ -171,7 +183,7 @@ function handle_delete(url){
         }
     });
 }
-function handle_confirm(title, confirm_title, deny_title, method, route){
+function handle_confirm(title, confirm_title, deny_title, method, route) {
     Swal.fire({
         title: title,
         showDenyButton: true,
@@ -184,10 +196,10 @@ function handle_confirm(title, confirm_title, deny_title, method, route){
                 type: method,
                 url: route,
                 dataType: 'json',
-                success: function(response) {
-                    if(response.redirect == "input"){
+                success: function (response) {
+                    if (response.redirect == "input") {
                         load_input(response.route);
-                    }else{
+                    } else {
                         load_list(1);
                     }
                     Swal.fire(response.message, '', response.alert)
@@ -198,7 +210,7 @@ function handle_confirm(title, confirm_title, deny_title, method, route){
         }
     });
 }
-function handle_save_password(tombol, form, url, method){
+function handle_save_password(tombol, form, url, method) {
     $(tombol).submit(function () {
         return false;
     });
@@ -210,16 +222,16 @@ function handle_save_password(tombol, form, url, method){
         url: url,
         data: data,
         dataType: 'json',
-        beforeSend: function() {
-            
+        beforeSend: function () {
+
         },
         success: function (response) {
-            if (response.alert=="success") {
+            if (response.alert == "success") {
                 success_message(response.message);
                 $(form)[0].reset();
                 setTimeout(function () {
                     $(tombol).prop("disabled", false);
-                      location.href = response.route;
+                    location.href = response.route;
                 }, 2000);
             } else {
                 error_message(response.message);

@@ -11,71 +11,67 @@
                         <div class="tab-content" id="tab-login">
                             <div class="card mb-0">
                                 <div class="card-body" style="padding: 40px;">
-                                    <form id="form_payment">
+                                    <form id="form_create_donation">
                                         <h4>Masukan Data Pembayaran Donasi</h4>
-
                                         <div class="row">
-
                                             <div class="col-12 form-group">
 
-                                                <div class="col-lg-12">
+                                                {{-- <div class="col-lg-12">
                                                     <label for="payment_method">Pilih Jumlah Donasi:</label>
 
                                                     <div>
-                                                        <input id="payment-1" class="radio-style" name="radio-group"
+                                                        <input id="payment-1" class="radio-style" name="amount"
                                                             type="radio" checked>
                                                         <label for="payment-"
-                                                            class="radio-style-1-label radio-small">Rp. 5,000</label>
+                                                            class="radio-style-1-label radio-small">5000</label>
                                                     </div>
                                                     <div>
-                                                        <input id="payment-2" class="radio-style" name="radio-group"
+                                                        <input id="payment-2" class="radio-style" name="amount"
                                                             type="radio">
                                                         <label for="payment-2"
-                                                            class="radio-style-2-label radio-small">Rp. 10,000</label>
+                                                            class="radio-style-2-label radio-small">10000</label>
                                                     </div>
                                                     <div>
-                                                        <input id="payment-3" class="radio-style" name="radio-group"
+                                                        <input id="payment-3" class="radio-style" name="amount"
                                                             type="radio">
                                                         <label for="payment-3"
-                                                            class="radio-style-3-label radio-small">Rp. 20,000</label>
+                                                            class="radio-style-3-label radio-small">20000</label>
                                                     </div>
                                                     <div>
-                                                        <input id="payment-4" class="radio-style" name="radio-group"
+                                                        <input id="payment-4" class="radio-style" name="amount"
                                                             type="radio">
                                                         <label for="payment-4"
-                                                            class="radio-style-3-label radio-small">Rp. 50,000</label>
+                                                            class="radio-style-3-label radio-small">50000</label>
                                                     </div>
                                                     <div>
-                                                        <input id="payment-5" class="radio-style" name="radio-group"
+                                                        <input id="payment-5" class="radio-style" name="amount"
                                                             type="radio">
                                                         <label for="payment-5"
-                                                            class="radio-style-3-label radio-small">Rp. 100,000</label>
+                                                            class="radio-style-3-label radio-small">100000</label>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="col-12 form-group">
                                                     <label for="radio-3" class="radio-style-3-label radio-small">Ketik
-                                                        Nominal Donasi:</label>
-
-                                                    <input type="text" placeholder="Ketikan nominal"
-                                                        class="form-control">
+                                                        Nominal (Rp):
+                                                        <input type="tel" placeholder="Ketikan jumlah uang"
+                                                            class="form-control mt-2" name="amount" id="amount">
                                                 </div>
                                             </div>
                                             <div class="col-12 form-group">
 
                                                 <div class="col-lg-12">
                                                     <label for="payment_method">Berikan Pesan:</label>
-                                                    <textarea name="" id="" cols="15" rows="5" class="form-control"></textarea>
+                                                    <textarea name="comment" id="amount" cols="15" rows="5" class="form-control"></textarea>
                                                 </div>
 
                                             </div>
                                             <div class="col-12 form-group">
-                                                <button class="button button-3d button-black m-0" id="tombol-reset"
-                                                    name="login-form-submit" value="login">Lakukan
-                                                    Pembayaran</button>
+                                                <button class="button button-3d button-black m-0"
+                                                    id="tombol_kirim_donation"
+                                                    onclick="save_form('#tombol_kirim_donation','#form_create_donation','{{ route('payment', $data['id']) }}');">Bayar</button>
                                             </div>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -89,3 +85,10 @@
         </div>
     </section>
 </x-user-layout>
+<script>
+    ribuan('amount');
+    var loadFile = function(event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
