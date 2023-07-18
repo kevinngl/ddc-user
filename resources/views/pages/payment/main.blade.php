@@ -64,12 +64,12 @@
                                                     <label for="payment_method">Berikan Pesan:</label>
                                                     <textarea name="comment" id="amount" cols="15" rows="5" class="form-control"></textarea>
                                                 </div>
-
                                             </div>
                                             <div class="col-12 form-group">
                                                 <button class="button button-3d button-black m-0"
                                                     id="tombol_kirim_donation"
                                                     onclick="save_form('#tombol_kirim_donation','#form_create_donation','{{ route('payment', $data['id']) }}');">Bayar</button>
+
                                             </div>
                                         </div>
                                     </form>

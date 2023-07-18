@@ -37,6 +37,7 @@ class CampaignController extends Controller
             'campaignId' => $id,
             'page' => 1,
             'limit' => 10,
+            'paymentStatus' => 'settlement'
         ]);
 
         $data = $responseCampaign["data"];

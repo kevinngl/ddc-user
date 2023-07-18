@@ -35,23 +35,21 @@ function save_form(tombol, form, url) {
                         window.location.href = response.callback;
                     }, 3000);
                 });
-                // success_message(response.message);
-                // $(form)[0].reset();
-                // setTimeout(function () {
-                //     $(tombol).prop("disabled", false);
-                //     $(tombol).html("Kirim");
-                //     window.open(response.data);
-                // }, 2000);
             } else {
                 Swal.fire({
                     text: response.message,
                     icon: "error",
                     buttonsStyling: false,
                     confirmButtonText: "Ok, Mengerti!",
+
                     customClass: {
                         confirmButton: "btn btn-danger"
+
                     },
                 });
+                setTimeout(function () {
+                    window.location.href = response.callback;
+                }, 2000);
             }
         },
     });

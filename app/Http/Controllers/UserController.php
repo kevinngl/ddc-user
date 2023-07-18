@@ -28,6 +28,7 @@ class UserController extends Controller
             'donatorId' => $user->user->id,
             'page' => 1,
             'limit' => 10,
+            'paymentStatus' => 'settlement'
         ]);
         
         $responseCategory = $this->categoryService->list([

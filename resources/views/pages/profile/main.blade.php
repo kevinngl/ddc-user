@@ -30,7 +30,7 @@
                                             <table class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Time</th>
+                                                        <th>Waktu Pembayaran</th>
                                                         <th>Program Donasi</th>
                                                         <th>Total Pembayaran</th>
                                                     </tr>
@@ -49,7 +49,7 @@
                                                     @endforeach
                                                     @if (empty($donation))
                                                         <tr>
-                                                            <td colspan="3" class="text-center">Belum ada transaksi
+                                                            <td colspan="4" class="text-center">Belum ada transaksi
                                                             </td>
                                                         </tr>
                                                     @endif
