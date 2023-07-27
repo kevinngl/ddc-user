@@ -9,7 +9,7 @@
                             <div class="heading-block border-bottom-0 mb-3">
                                 <h2>Ingin berdonasi? Silahkan pilih</h2>
                             </div>
-                            <p class="text-muted mb-0">Silahkan lihat berbagai kategori donasi yang dapat anda cari dan
+                            <p class="text-muted mb-0">Silahkan lihat berbagai iri donasi yang dapat anda cari dan
                                 pilih.</p>
                         </div>
                         <div class="col-md-5 d-flex flex-row justify-content-md-end mt-4 mt-md-0">
