@@ -69,7 +69,9 @@
                                                 <button class="button button-3d button-black m-0"
                                                     id="tombol_kirim_donation"
                                                     onclick="save_form('#tombol_kirim_donation','#form_create_donation','{{ route('payment', $data['id']) }}');">Bayar</button>
-
+                                                {{-- <a href="javascript:;"
+                                                    onclick="handle_confirm('Apakah Anda Yakin Ingin Membayar dengan Nominal tersebut?','Yakin','Tidak','POST','{{ route('payment', $data['id']) }}');"
+                                                    class="button button-3d button-black m-0">Bayar</a> --}}
                                             </div>
                                         </div>
                                     </form>
