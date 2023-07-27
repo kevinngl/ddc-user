@@ -32,7 +32,7 @@
                             <div class="col-12 form-group">
                                 <button class="button button-3d button-black m-0" id="tombol_login" type="button"
                                     onclick="auth('#tombol_login','#form_login','{{ route('login') }}','login');">Login</button>
-                                <a href="{{ route('forgot-password') }}" class="float-end">Lupa password?</a>
+                                {{-- <a href="{{ route('forgot-password') }}" class="float-end">Lupa password?</a> --}}
                             </div>
                         </form>
                     </div>
@@ -68,7 +68,7 @@
                             </div>
 
                             <div class="col-12 form-group">
-                                <label for="register-form-password">Choose Password:</label>
+                                <label for="register-form-password">Password:</label>
                                 <input type="password" id="register-form-password" name="password" value=""
                                     class="form-control" />
                             </div>
