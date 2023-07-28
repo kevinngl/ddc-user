@@ -16,7 +16,8 @@
                                 <!-- Tag Cloud
                                 ============================================= -->
                                 <div class="tagcloud my-3 clearfix">
-                                    <a target="_blank" href="https://wa.me/{{ $data['pic']['phone'] }} ?? 0">Penulis:
+                                    <a target="_blank" href="https://wa.me/{{ $data['pic']['phone'] }}"><i
+                                            class="icon-whatsapp"></i> Hubungi:
                                         {{ $data['pic']['name'] }}</a>
                                 </div><!-- .tagcloud end -->
                                 <!-- Tag Cloud
@@ -25,21 +26,8 @@
                                 <div class="clear"></div>
 
                             </div>
+                            @include('pages.single.copy-link')
 
-                            <div class="col-auto order-md-last mb-4 mt-4 mb-md-0">
-                                <a href="#" id="notifylink" data-bs-toggle="dropdown" data-bs-offset="0,15"
-                                    aria-haspopup="true" aria-expanded="false" data-offset="0,12"><i
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Share"
-                                        class="icon-line-share btn btn-secondary"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="notifylink">
-                                    <a class="dropdown-item" href="#"><i
-                                            class="icon-facebook me-2"></i>Facebook</a>
-                                    <a class="dropdown-item" href="#"><i class="icon-twitter me-2"></i>Twitter</a>
-                                    <a class="dropdown-item" href="#"><i
-                                            class="icon-whatsapp me-2"></i>Whatsapp</a>
-                                    <a class="dropdown-item" href="#"><i class="icon-code me-2"></i>Embedded</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,107 +68,70 @@
                                     </div>
 
                                     <div class="line"></div>
-
-                                    <div id="section-faqs" class="page-section">
-                                        <h2>Tanya Jawab</h2>
-
-
-                                        <div class="toggle toggle-bg">
-                                            <div class="toggle-header">
-                                                <div class="toggle-icon">
-                                                    <i class="toggle-closed icon-question-sign"></i>
-                                                    <i class="toggle-open icon-question-sign"></i>
-                                                </div>
-                                                <div class="toggle-title">
-                                                    Bagaimana cara saya berdonasi?
-                                                </div>
-                                            </div>
-                                            <div class="toggle-content">
-                                                <p>1. <b>Pilih Metode Donasi Anda:</b> Pilih metode yang sesuai untuk
-                                                    Anda. Anda dapat berdonasi melalui kartu kredit, PayPal, atau
-                                                    transfer bank. Semua metode pembayaran aman, sehingga Anda dapat
-                                                    berdonasi dengan tenang.</p>
-                                                <p>2. <b>Pilih Jumlah Donasi Anda:</b> Pilih jumlah yang ingin Anda
-                                                    donasikan. Setiap sedikit bantuan sangat berarti, jadi jangan
-                                                    khawatir jika Anda hanya bisa memberikan sedikit.</p>
-                                                <p>3. <b>Isi Detail Anda:</b> Untuk memastikan bahwa kami dapat
-                                                    memproses donasi Anda dengan benar, harap isi detail Anda dengan
-                                                    akurat. Kami akan memerlukan nama Anda, alamat email, dan informasi
-                                                    tambahan yang dibutuhkan oleh metode pembayaran yang Anda pilih.</p>
-                                                <p>4. <b>Konfirmasi Donasi Anda:</b> Periksa detail Anda dan konfirmasi
-                                                    donasi Anda. Anda akan diarahkan ke gateway pembayaran yang aman
-                                                    untuk menyelesaikan donasi Anda.</p>
-                                                <p>5. <b>Lihat Bukti Pembayaran Anda:</b> Setelah menyelesaikan donasi
-                                                    Anda, Anda akan menerima email konfirmasi dan tanda terima. Harap
-                                                    simpan tanda terima Anda untuk catatan Anda sendiri.</p>
-                                                <p>Terima kasih atas kemurahan hati Anda! Donasi Anda akan memiliki
-                                                    dampak positif pada kehidupan mereka yang membutuhkan.</p>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="toggle toggle-bg">
-                                            <div class="toggle-header">
-                                                <div class="toggle-icon">
-                                                    <i class="toggle-closed icon-comments-alt"></i>
-                                                    <i class="toggle-open icon-comments-alt"></i>
-                                                </div>
-                                                <div class="toggle-title">
-                                                    Siapa yang mengelola donasi?
-                                                </div>
-                                            </div>
-                                            <div class="toggle-content">Del Donation Care merupakan sebuah website yang
-                                                dikelola oleh Departemen Sosial Dan Agama yang dinaungi oleh Badan
-                                                Eksekutif Mahasiswa Institut Teknologi Del</div>
-                                        </div>
-
-                                        <div class="toggle toggle-bg">
-                                            <div class="toggle-header">
-                                                <div class="toggle-icon">
-                                                    <i class="toggle-closed icon-lock3"></i>
-                                                    <i class="toggle-open icon-lock3"></i>
-                                                </div>
-                                                <div class="toggle-title">
-                                                    Kepada siapa donasi diberikan?
+                                    <!-- Item 1 -->
+                                    <h4>Program Kampanye Lainnya</h4>
+                                    <div class="row">
+                                        @foreach ($allCampaign as $item)
+                                            <div class="col-lg-4 col-sm-6 mb-4">
+                                                <div class="i-products">
+                                                    <div class="products-image">
+                                                        <a href="{{ route('single', $item['id']) }}">
+                                                            <img src="{{ $item['image']['filePath'] ?? 'https://images.bisnis.com/posts/2021/12/10/1476128/donasi.jpeg' }}"
+                                                                alt="Image 1"
+                                                                style="background-image: url(...); background-size: cover; width: 100%; height: 100%;">
+                                                            <span class="badge">{{ $item['category']['name'] }}</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="products-desc">
+                                                        <h3><a
+                                                                href="{{ route('single', $item['id']) }}">{{ $item['title'] }}</a>
+                                                        </h3>
+                                                        <p>{{ $item['donationAchieved'] }}</p>
+                                                        <div class="clear"></div>
+                                                        @if ($data['donationTarget'] != 0)
+                                                            <ul class="skills">
+                                                                @php
+                                                                    $progression = ($item['donationAchieved'] / $item['donationTarget']) * 100;
+                                                                @endphp
+                                                                <li
+                                                                    data-percent="{{ $progression > 100 ? 100 : $progression }}">
+                                                                    <span class="d-flex justify-content-between w-100">
+                                                                        <span class="counter"><span
+                                                                                data-from="{{ $item['donationAchieved'] }}"
+                                                                                data-to="{{ $item['donationTarget'] }}"
+                                                                                data-refresh-interval="10"
+                                                                                data-speed="5000"></span><strong>Rp
+                                                                                {{ number_format($item['donationAchieved'], 0, '.', '.') }}</strong>
+                                                                            Terkumpul</span>
+                                                                    </span>
+                                                                    <div class="progress"></div>
+                                                                </li>
+                                                            </ul>
+                                                        @endif
+                                                        <div class="products-hoverlays">
+                                                            <ul class="list-group-flush my-3 mb-0">
+                                                                <li class="list-group-item">
+                                                                    Target donasi
+                                                                    <strong>Rp
+                                                                        {{ number_format($item['donationTarget'], 0, '.', '.') }}</strong>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                    @php
+                                                                        $date1 = date_create($item['endDate']);
+                                                                        $date2 = date_create(date('Y-m-d H:i:s'));
+                                                                        $dateDiff = date_diff($date1, $date2);
+                                                                    @endphp
+                                                                    Tersisa
+                                                                    <strong>{{ $dateDiff->format('%a') }}</strong>
+                                                                    Hari lagi
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="toggle-content">Donasi yang diberikan sesuai dengan program
-                                                donasi yang dibuat, biasanya saat terjadi bencana alam, kabar duka cita
-                                                dari salah satu mahasiswa, dan berbagai jenis lainnya.</div>
-                                        </div>
-
-                                        <div class="toggle toggle-bg">
-                                            <div class="toggle-header">
-                                                <div class="toggle-icon">
-                                                    <i class="toggle-closed icon-download-alt"></i>
-                                                    <i class="toggle-open icon-download-alt"></i>
-                                                </div>
-                                                <div class="toggle-title">
-                                                    Apakah saya bisa melakukan donasi dengan uang tunai?
-                                                </div>
-                                            </div>
-                                            <div class="toggle-content"><b>Bisa</b>, anda bisa melakukan donasi secara
-                                                tunai dengan menghubungi kontak berikut ini</div>
-                                        </div>
-
-                                        <div class="toggle toggle-bg">
-                                            <div class="toggle-header">
-                                                <div class="toggle-icon">
-                                                    <i class="toggle-closed icon-ok"></i>
-                                                    <i class="toggle-open icon-ok"></i>
-                                                </div>
-                                                <div class="toggle-title">
-                                                    Apakah pembayaran donasi di website ini terpercaya?
-                                                </div>
-                                            </div>
-                                            <div class="toggle-content"><b>Ya</b>, karena sistem pembayaran yang website
-                                                ini menggunakan payment gateway midtrans yang merupakan layanan jembatan
-                                                pembayaran yang terjamin keamanannya.</div>
-                                        </div>
+                                        @endforeach
                                     </div>
-
-                                    <!-- Post Single - Content End -->
-
                                 </div>
                             </div><!-- .entry end -->
 
@@ -197,10 +148,9 @@
                                 <h3 class="fw-bold mb-2 color">Rp
                                     {{ number_format($data['donationAchieved'], 2, ',', '.') }}
                                     Terkumpul</h3>
+                                {{-- @if ($data['donationTarget'] != 0) --}}
                                 <span class="text-uppercase text-smaller op-07">Target Dana Rp.
                                     {{ number_format($data['donationTarget'], 2, ',', '.') }}</span>
-                                <p class="text-uppercase text-smaller op-07">
-                                    {{ $donationCount }} kontribusi</p>
                                 <ul class="skills mt-4">
                                     @php
                                         $progression = ($data['donationAchieved'] / $data['donationTarget']) * 100;
@@ -210,8 +160,7 @@
                                         <span class="d-flex justify-content-between w-100">
                                             <span class="counter counter-xs h6"><span
                                                     data-from="{{ $data['donationAchieved'] }}"
-                                                    data-to="{{ $data['donationTarget'] }}"
-                                                    data-refresh-interval="10"
+                                                    data-to="{{ $data['donationTarget'] }}" data-refresh-interval="10"
                                                     data-speed="2000"></span><strong>{{ $progression > 100 ? 100 : $progression }}%</strong>
                                             </span>
                                             <span class="counter counter-xs h6"><span data-from="0" data-to="20"
@@ -222,7 +171,9 @@
                                         <div class="progress"></div>
                                     </li>
                                 </ul>
-
+                                {{-- @else --}}
+                                {{-- <span class="text-uppercase text-smaller op-07">Tanpa Target Dana</span>
+                                @endif --}}
                             </div>
                             <div class="clear mt-4"></div>
                             <a href="{{ route('donate', $data['id']) }}"

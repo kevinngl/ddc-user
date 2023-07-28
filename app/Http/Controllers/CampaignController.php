@@ -28,11 +28,14 @@ class CampaignController extends Controller
         $this->authService = new AuthService();
     }
     
-    public function detail($id)
+    public function detail($id,Request $request)
     {
         $responseCampaign = $this->campaignService->detail($id);
-        // dd($responseCampaign);
-
+        $responseAllCampaign = $this->campaignService->list($request);
+        $responseAllCampaignResult = null;
+        if ($responseAllCampaign["success"]) {
+            $responseAllCampaignResult = $responseAllCampaign["data"]["result"];
+        }
         $responseDonation = $this->donationService->list([
             'campaignId' => $id,
             'page' => 1,
@@ -40,11 +43,21 @@ class CampaignController extends Controller
             'paymentStatus' => 'settlement'
         ]);
 
+        $collection = Collection::make($responseAllCampaignResult);
+        $perPage = 6;
+        $pageAllCampaign = $request->query->get('page');
+        $allCampaign = new LengthAwarePaginator(
+            $collection,
+            $responseAllCampaign["data"]["total"],
+            $perPage,
+            $pageAllCampaign,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+
         $data = $responseCampaign["data"];
         $donation = $responseDonation["data"]["result"];
-        // dd($donation);
         $donationCount = $responseDonation["data"]["total"];
-        return view('pages.single.main', compact('data', 'donation', 'donationCount'));
+        return view('pages.single.main', compact('data', 'donation', 'donationCount','allCampaign'));
     }
 
     public function index(Request $request)
@@ -67,6 +80,10 @@ class CampaignController extends Controller
             ['path' => request()->url(), 'query' => request()->query()]
         );
         return view('pages.home.main', compact('data'));
+    }
+    public function faq()
+    {
+        return view('pages.faq.main');
     }
 
     public function list(Request $request)

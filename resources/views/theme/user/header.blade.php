@@ -38,6 +38,7 @@
                 <nav class="primary-menu">
 
                     <ul class="menu-container">
+
                         <li class="current menu-item"><a class="menu-link" href="{{ route('home') }}">
                                 <div>Beranda</div>
                             </a></li>
@@ -59,6 +60,9 @@
                                 </a>
                             </li>
                         @endif
+                        <li class="menu-item"><a class="menu-link" href="{{ route('faq') }}">
+                                <div>FAQ</div>
+                            </a></li>
                     </ul>
 
                 </nav><!-- #primary-menu end -->

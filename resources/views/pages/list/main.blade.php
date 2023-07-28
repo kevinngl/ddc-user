@@ -68,11 +68,13 @@
                                     </ul>
                                     <div class="products-hoverlays">
                                         <ul class="list-group-flush my-3 mb-0">
-                                            <li class="list-group-item">
-                                                Target donasi
-                                                <strong>Rp
-                                                    {{ number_format($item['donationTarget'], 0, '.', '.') }}</strong>
-                                            </li>
+                                            @if ($data['donationTarget'] != 0)
+                                                <li class="list-group-item">
+                                                    Target donasi
+                                                    <strong>Rp
+                                                        {{ number_format($item['donationTarget'], 0, '.', '.') }}</strong>
+                                                </li>
+                                            @endif
                                             <li class="list-group-item">
                                                 @php
                                                     $date1 = date_create($item['endDate']);

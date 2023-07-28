@@ -44,6 +44,7 @@ class DonationController extends Controller
         // dd($request);
         $createdBy = session('user')->user->id;
         $campaignId = $id;
+        $showName = $request['showName'];
         $comment = $request['comment'];
         $amount = Str::of($request['amount'])->replace(',','')?: 0;
         $donatorId = $createdBy;
@@ -52,6 +53,7 @@ class DonationController extends Controller
             'donatorId' => $donatorId,
             'comment' => $comment,
             'amount' => $amount,
+            'showName' => $showName,
         ];
 
         $response = $this->donationService->create($payload);

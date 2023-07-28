@@ -24,6 +24,7 @@ Route::group(['domain' => ''], function () {
         return redirect()->route('home');
     });
     Route::get('home', [CampaignController::class, 'index'])->name('home');
+    Route::get('faq', [CampaignController::class, 'faq'])->name('faq');
     Route::get('list', [CampaignController::class, 'list'])->name('list');
     Route::get('single/{id}', [CampaignController::class, 'detail'])->name('single');
 

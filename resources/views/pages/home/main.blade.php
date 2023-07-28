@@ -34,8 +34,9 @@
                                     <div class="products-desc">
                                         <h3><a href="{{ route('single', $item['id']) }}">{{ $item['title'] }}</a>
                                         </h3>
-                                        <p>{{ $item['donationAchieved'] }}</p>
+                                        <p>Terkumpul Rp {{ number_format($item['donationAchieved'], 0, '.', '.') }}</p>
                                         <div class="clear"></div>
+                                        {{-- @if ($data['donationTarget'] != 0) --}}
                                         <ul class="skills">
                                             @php
                                                 $progression = ($item['donationAchieved'] / $item['donationTarget']) * 100;
@@ -53,6 +54,7 @@
                                                 <div class="progress"></div>
                                             </li>
                                         </ul>
+                                        {{-- @endif --}}
                                         <div class="products-hoverlays">
                                             <ul class="list-group-flush my-3 mb-0">
                                                 <li class="list-group-item">
