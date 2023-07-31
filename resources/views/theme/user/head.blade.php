@@ -22,7 +22,8 @@
     <!-- Theme Color -->
     <link rel="stylesheet" href="{{ asset('semicolon/coworking/css/fonts.css') }}" type="text/css" />
     <!-- Theme Font -->
-    <link rel="stylesheet" href="{{ asset('semicolon/coworking/coworking.css') }}" type="text/css" /> <!-- Theme CSS -->
+    <link rel="stylesheet" href="{{ asset('semicolon/coworking/coworking.css') }}" type="text/css" />
+    <!-- Theme CSS -->
     <!-- / -->
     <link rel="stylesheet" href="{{ asset('semicolon/css/font-icons.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('semicolon/css/animate.css') }}" type="text/css" />
@@ -39,7 +40,7 @@
     <link rel="stylesheet" href="{{ asset('semicolon/css/colors.php?color=209EBB') }}" type="text/css" />
     <link rel="shortcut icon" href="{{ asset('semicolon/favicon.ico') }}" />
     <link rel="shortcut icon" href="{{ asset('css/toastr.css') }}" />
-<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
     <!-- Document Title
  ============================================= -->
