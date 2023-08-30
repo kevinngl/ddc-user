@@ -64,7 +64,6 @@ class CampaignController extends Controller
     {
         $response = $this->campaignService->list($request);
         $result = null;
-
         if ($response["success"]) {
             $result = $response["data"]["result"];
         }

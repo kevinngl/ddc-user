@@ -40,12 +40,13 @@ Route::group(['domain' => ''], function () {
         Route::get('donate/{id}', [DonationController::class, 'index'])->name('donate');
         Route::post('payment/{id}', [DonationController::class, 'store'])->name('payment');
         Route::get('logout', [AuthController::class, 'do_logout'])->name('logout');
+        Route::get('success', [DonationController::class, 'do_success'])->name('success');
     });
 
     
     Route::get('forgot-password', [AuthController::class, 'showLinkRequestForm'])->name('forgot-password');
-    // Route::post('send-email', [AuthController::class, 'sendResetLinkEmail'])->name('send-email');
-    // Route::get('reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('reset.password.get');
-    // Route::get('resetPage', [AuthController::class, 'resetPage'])->name('resetPage');
-    // Route::post('reset-password', [AuthController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+    Route::post('send-email', [AuthController::class, 'sendResetLinkEmail'])->name('send-email');
+    Route::get('reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('reset.password.get');
+    Route::get('resetPage', [AuthController::class, 'resetPage'])->name('resetPage');
+    Route::post('reset-password', [AuthController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 });

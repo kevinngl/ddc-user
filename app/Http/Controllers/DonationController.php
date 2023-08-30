@@ -34,6 +34,10 @@ class DonationController extends Controller
 
         return view('pages.payment.main', compact('data'));
     }
+    public function do_success()
+    {
+        return view('pages.payment.success');
+    }
     /**
      * Display a listing of the resource.
      *
